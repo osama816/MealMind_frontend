@@ -1,0 +1,36 @@
+<section class="min-h-screen bg-(--main-bg) py-12 px-4 md:px-16 lg:px-24">
+    <div class="container mx-auto max-w-5xl">
+        <!-- Page Header -->
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-(--main-text) mb-4">My <span
+                    class="text-(--primary)">Account</span></h1>
+            <p class="text-(--sec-text)">Manage your profile and view your order history.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Profile Card -->
+            <div class="lg:col-span-1 bg-(--sec-bg) rounded-3xl p-8 shadow-lg text-center h-fit">
+                <div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-4 border-(--primary) mb-6">
+                    <img id="profile-avatar" src="../assets/images/default_user.jpg" alt="Profile"
+                        class="w-full h-full object-cover">
+                </div>
+                <h2 id="profile-name" class="text-2xl font-bold text-(--main-text) mb-1">Guest User</h2>
+                <p id="profile-email" class="text-(--sec-text) mb-6">guest@example.com</p>
+            </div>
+
+            <!-- Order History -->
+            <div class="lg:col-span-2 bg-(--sec-bg) rounded-3xl p-8 shadow-lg">
+                <h2 class="text-2xl font-bold text-(--main-text) mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-receipt text-(--primary)"></i> Order History
+                </h2>
+                <div id="order-history-list" class="space-y-4">
+                    <!-- Order items will be injected here by JS -->
+                    <div class="text-center py-12 text-(--sec-text)">
+                        <i class="fa-solid fa-box-open text-5xl mb-4 opacity-30"></i>
+                        <p>Loading your orders...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

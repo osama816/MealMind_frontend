@@ -1,0 +1,81 @@
+<section class="min-h-screen bg-(--main-bg) text-(--main-text) py-12 px-4 md:px-16 lg:px-24">
+    <div class="container mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8 animate-side">
+            <h1 class="text-3xl font-bold font-(family-name:--fsecond)">Your Shopping Cart</h1>
+            <a href="#products" class="text-(--primary) font-bold hover:underline">Continue Shopping</a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            <!-- Left: Cart Items -->
+            <div class="lg:col-span-2 space-y-6 animate-side">
+                <div id="cartItems" class="space-y-4">
+                    <!-- Cart items will be injected here by JS -->
+                </div>
+
+                <div id="emptyCart"
+                    class="hidden text-center py-20 bg-(--sec-bg) rounded-4xl">
+                    <div class="text-6xl mb-6">🛒</div>
+                    <h2 class="text-2xl font-bold mb-2 text-(--main-text)">Your cart is empty</h2>
+                    <p class="text-(--sec-text) mb-8">Sounds like a good time to start shopping!</p>
+                    <a href="#products"
+                        class="inline-block bg-(--primary) text-white font-bold py-4 px-12 rounded-full hover:bg-(--primary-hover) transition">Browse
+                        Menu</a>
+                </div>
+            </div>
+
+            <!-- Right: Summary -->
+            <div class="lg:col-span-1 animate-top">
+                <div class="bg-(--sec-bg) rounded-[2.5rem] p-8 shadow-sm space-y-8">
+                    <h2 class="text-2xl font-bold text-(--main-text)">Order Summary</h2>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-(--sec-text)">
+                            <span>Subtotal</span>
+                            <span id="subtotal" class="font-bold text-(--main-text)">$0</span>
+                        </div>
+                        <div class="flex justify-between text-(--sec-text)">
+                            <span>Delivery Fee</span>
+                            <span id="delivery" class="text-green-500 font-bold">FREE</span>
+                        </div>
+                        <div class="flex justify-between text-red-500 bg-red-50 p-3 rounded-xl" id="discount-row">
+                            <span>Promo Discount</span>
+                            <span id="discount" class="font-bold">- $0</span>
+                        </div>
+
+                        <div class="pt-4 border-t border-(--border)">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-(--main-text)">Total</span>
+                                <span id="total" class="text-3xl font-bold text-(--primary)">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="relative group">
+                        <input type="text" id="promoCode" placeholder="Promo code"
+                            class="w-full bg-(--bg-cream) border-none rounded-2xl py-4 pl-5 pr-20 outline-none focus:ring-2 focus:ring-(--primary) transition">
+                        <button id="applyPromo"
+                            class="absolute right-2 top-2 bottom-2 px-4 bg-(--primary) text-white rounded-xl font-bold text-sm hover:bg-(--primary-hover) transition">
+                            Apply
+                        </button>
+                    </div>
+                    <p id="promoMessage"></p>
+
+                    <button id="checkoutBtn"
+                        class="w-full bg-(--primary) text-white font-bold py-5 rounded-2xl text-lg shadow-lg shadow-orange-100 hover:bg-(--primary-hover) transition">
+                        Proceed to Checkout
+                    </button>
+
+                    <div
+                        class="flex items-center justify-center gap-4 opacity-50 grayscale transition-all hover:grayscale-0">
+                        <i class="fab fa-cc-visa text-3xl"></i>
+                        <i class="fab fa-cc-mastercard text-3xl"></i>
+                        <i class="fab fa-cc-apple-pay text-3xl"></i>
+                        <i class="fab fa-cc-paypal text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

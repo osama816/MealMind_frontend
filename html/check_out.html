@@ -1,0 +1,104 @@
+<section class="min-h-screen bg-(--bg-cream) text-(--text-dark) py-12 px-4 md:px-16 lg:px-24">
+    <div class="container mx-auto">
+        <!-- Header/Back Nav -->
+        <div class="mb-10 animate-side">
+            <a href="#home" class="flex items-center gap-2 font-bold text-lg hover:text-(--primary) transition mb-2">
+                <i class="fas fa-chevron-left text-sm"></i> Shopping Continue
+            </a>
+            <div class="border-b-[3px] border-dashed border-(--primary) opacity-40 w-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <!-- Left: Shopping Items -->
+            <div class="space-y-8 animate-side">
+                <h2 class="text-2xl font-bold mb-4">Shopping Item</h2>
+                <div id="checkoutItems" class="space-y-4">
+                    <!-- Item Card 1 -->
+                    <div
+                        class="bg-white rounded-2xl p-6 flex items-center justify-between shadow-sm border border-white hover:border-(--border) transition group">
+                        <div class="flex items-center gap-6">
+                            <div class="w-20 h-20 bg-(--bg-cream) rounded-xl p-2">
+                                <img src="../assets/images/item1.jpg" alt="Item"
+                                    class="w-full h-full object-cover rounded-lg">
+                            </div>
+                            <h3 class="font-bold text-lg">Vermicelli Upma</h3>
+                        </div>
+                        <div class="flex items-center gap-8">
+                            <div class="flex items-center gap-4 bg-(--primary) text-white rounded-full px-4 py-1">
+                                <button class="font-bold hover:scale-110 transition">-</button>
+                                <span class="font-bold min-w-[20px] text-center">00</span>
+                                <button class="font-bold hover:scale-110 transition">+</button>
+                            </div>
+                            <span class="text-xl font-bold">₹200</span>
+                            <button class="text-gray-400 hover:text-red-500 transition">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Repeat items as needed by JS -->
+                </div>
+            </div>
+
+            <!-- Right: Card Details (Match Orange Card Design) -->
+            <div class="animate-top">
+                <div class="bg-(--primary) rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-12">
+                        <h2 class="text-4xl font-bold font-(family-name:--fsecond)">Card Details</h2>
+                        <div class="w-16 h-16 rounded-3xl overflow-hidden border-2 border-white/20">
+                            <img src="../assets/images/default_user.jpg" alt="Profile"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <form id="checkoutForm" class="space-y-8">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium opacity-80 uppercase tracking-wider">Name on card</label>
+                            <input type="text" placeholder="Name" required
+                                class="w-full bg-white text-(--text-dark) p-5 rounded-2xl outline-none border-none placeholder:text-gray-300 shadow-inner">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium opacity-80 uppercase tracking-wider">Card Number</label>
+                            <input type="text" placeholder="1111 2222 3333 4444" required
+                                class="w-full bg-white text-(--text-dark) p-5 rounded-2xl outline-none border-none placeholder:text-gray-300 shadow-inner">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium opacity-80 uppercase tracking-wider">Expiration
+                                    date</label>
+                                <input type="text" placeholder="mm/yy" required
+                                    class="w-full bg-white text-(--text-dark) p-5 rounded-2xl outline-none border-none placeholder:text-gray-300 shadow-inner text-center">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium opacity-80 uppercase tracking-wider">CVV</label>
+                                <input type="text" placeholder="123" required
+                                    class="w-full bg-white text-(--text-dark) p-5 rounded-2xl outline-none border-none placeholder:text-gray-300 shadow-inner text-center">
+                            </div>
+                        </div>
+
+                        <div class="border-t border-white/20 my-10 pt-10 space-y-4 text-lg">
+                            <div class="flex justify-between items-center font-medium">
+                                <span>Subtotal</span>
+                                <span id="checkoutSubtotal">$1,668</span>
+                            </div>
+                            <div class="flex justify-between items-center font-medium">
+                                <span>Shipping (Free Delivery)</span>
+                                <span>$0</span>
+                            </div>
+                            <div class="flex justify-between items-center text-2xl font-bold pt-4">
+                                <span>Total (Tax incl.)</span>
+                                <span id="checkoutTotal">$1,672</span>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-white text-(--primary) py-6 rounded-3xl font-extrabold text-xl hover:bg-(--bg-cream) transform hover:scale-[1.02] transition shadow-xl mt-4">
+                            Checkout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

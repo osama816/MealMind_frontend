@@ -1,0 +1,71 @@
+<nav class="bg-(--sec-bg) transition-colors duration-300 sticky top-0 z-50">
+  <div class="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#home" class="text-2xl font-bold font-(family-name:--fsecond) text-(--primary) flex items-center gap-1 border-b-2 border-(--primary) border-dashed">
+      <span>Meal</span><span class="text-(--main-text)">Mind.</span>
+    </a>
+
+    <!-- Navigation Links (Centered on Desktop) -->
+    <ul class="hidden md:flex items-center gap-8 font-medium text-(--main-text) opacity-80">
+      <li><a href="#home" class="hover:text-(--primary) transition">Home</a></li>
+      <li><a href="#products" class="hover:text-(--primary) transition text-(--primary) font-bold">Menu</a></li>
+      <li><a href="#about" class="hover:text-(--primary) transition">About Us</a></li>
+    </ul>
+
+    <!-- Action Icons -->
+    <div class="flex items-center gap-3 md:gap-5">
+      <!-- Search Icon -->
+      <form id="search-form" class="hidden md:block relative group">
+        <i
+          class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 opacity-40 group-focus-within:opacity-100 transition-opacity text-(--primary)"></i>
+        <input type="search"
+          class="bg-(--main-bg) text-(--main-text) rounded-full py-2 pl-4 pr-10 outline-none border border-transparent focus:border-(--primary) transition-all w-48 lg:w-64 placeholder-opacity-50 placeholder-(--main-text)"
+          id="search-input" autocomplete="off" placeholder="Search..." />
+        <div id="search-results"
+          class="bg-(--sec-bg) text-(--main-text) absolute w-full z-50 rounded-xl mt-2 border border-(--border) shadow-xl hidden">
+        </div>
+      </form>
+
+      <!-- Profile Icon -->
+      <a href="#profile" class="w-10 h-10 rounded-full overflow-hidden  hover:scale-105 transition">
+        <img src="../assets/images/default_user.jpg" alt="Profile" class="w-full h-full object-cover">
+      </a>
+
+      <!-- Theme Toggle -->
+      <button id="theme-toggle"
+        class="w-10 h-10 rounded-full bg-(--sec-bg) text-(--primary) transition hover:bg-(--main-text) hover:text-(--sec-bg)">
+        <div class="hidden" id="sun-icon"><i class=" fas fa-sun"></i></div>
+        <div id="moon-icon"><i class="fas fa-moon"></i></div>
+      </button>
+
+      <!-- Cart -->
+      <a href="#cart"
+        class="w-10 h-10 flex items-center justify-center rounded-full text-(--primary) hover:text-(--sec-bg) hover:bg-(--primary) transition text-xl">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+      <!-- Auth Buttons -->
+      <div id="auth-buttons"></div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="md:hidden text-2xl text-(--main-text)" id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-black/50 z-60 hidden">
+  <div class="bg-(--sec-bg) w-3/4 h-full p-8 space-y-8 animate-side">
+    <div class="flex items-center justify-between">
+      <span class="text-2xl font-bold text-(--primary)">FoodDash</span>
+      <button id="close-menu" class="text-2xl"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="space-y-6 text-xl font-medium">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#products" class="text-(--primary)">Menu</a></li>
+      <li><a href="#about">About Us</a></li>
+    </ul>
+  </div>
+</div>

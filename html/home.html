@@ -1,0 +1,280 @@
+<section class="home">
+  <!-- Hero Section -->
+  <div class=" bg-(--main-bg) pt-10 pb-20 px-4 md:px-16 lg:px-24 overflow-hidden">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+      <!-- Hero Content -->
+      <div class="w-full md:w-1/2 space-y-8 ">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-(--main-text)">
+          <span class="text-(--primary)">Quick</span> and Tasty <br>
+          Food Delivered <span class="text-(--primary)">with a</span> <br>
+          <span class="text-(--primary)">Dash</span> of Speed
+        </h1>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#menu"
+            class="bg-(--primary) text-white font-bold py-4 px-10 rounded-full hover:bg-(--primary-hover) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+          <a href="#products"
+            class="bg-(--sec-bg) text-(--primary) font-bold py-4 px-10 rounded-full hover:bg-(--bg-cream) transition text-center">
+            View Menu
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Image - Animated Rotating Products -->
+      <div class="w-full md:w-1/2 flex items-center justify-center">
+        <div class="rotating-products-container">
+          <!-- Product 1 -->
+          <div class="product-orbit">
+            <img src="../assets/images/item1.png" alt="Indian Vegetable Pulao">
+          </div>
+          <!-- Product 2 -->
+          <div class="product-orbit">
+            <img src="../assets/images/item2.png" alt="Paneer Bhua Masala">
+          </div>
+          <!-- Product 3 -->
+          <div class="product-orbit">
+            <img src="../assets/images/item3.png" alt="Vermicelli Upma">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Bar -->
+  <div class="container mx-auto px-4 -mt-10 mb-10">
+    <div class="bg-(--sec-bg) rounded-2xl shadow-xl py-8 px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex items-center gap-5 pb-6 md:pb-0">
+        <div class="w-14 h-14 bg-(--bg-cream) rounded-xl flex items-center justify-center text-3xl">
+          🚚
+        </div>
+        <div class="text-(--main-text)">
+          <h3 class="font-bold text-lg ">Fast Delivery</h3>
+          <p class="text-sm ">Delicious meals arrive at your doorstep in no time.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-5 pb-6 md:pb-0">
+        <div class="w-14 h-14 bg-(--bg-cream) rounded-xl flex items-center justify-center text-3xl">
+          🥗
+        </div>
+        <div class="text-(--main-text)">
+          <h3 class="font-bold text-lg">Fresh Food</h3>
+          <p class="text-sm ">Carefully selected ingredients for peak flavor and
+            health.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-5">
+        <div class="w-14 h-14 bg-(--bg-cream) rounded-xl flex items-center justify-center text-3xl">
+          🎁
+        </div>
+        <div class="text-(--main-text)">
+          <h3 class="font-bold text-lg">Free Delivery</h3>
+          <p class="text-sm ">Enjoy zero delivery fees on specific order values.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Best Delivered Indian Dishes Section -->
+<section class="py-20 bg-(--sec-bg)" id="popular">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-(--main-text)">Our <span class="text-(--primary)">Best
+          Popular</span></h2>
+      <h2 class="text-3xl md:text-5xl font-bold text-(--main-text)">Indian Dish</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <!-- Item 1 -->
+      <div class="text-center">
+        <div class="popular-ellipse mb-6">
+          <img src="../assets/images/item1.png" alt="Indian Vegetable Pulao">
+        </div>
+        <h3 class="font-bold text-xl mb-2 text-(--main-text)">Indian Vegetable Pulao</h3>
+        <a href="#product?id=1" class="text-(--primary) font-bold hover:underline">Order Now ></a>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="text-center">
+        <div class="popular-ellipse mb-6">
+          <img src="../assets/images/item2.png" alt="Paneer Bhua Masala">
+        </div>
+        <h3 class="font-bold text-xl mb-2 text-(--main-text)">Paneer Bhua Masala</h3>
+        <a href="#product?id=2" class="text-(--primary) font-bold hover:underline">Order Now ></a>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="text-center">
+        <div class="popular-ellipse mb-6">
+          <img src="../assets/images/item3.png" alt="Vermicelli Upma">
+        </div>
+        <h3 class="font-bold text-xl mb-2 text-(--main-text)">Vermicelli Upma</h3>
+        <a href="#product?id=3" class="text-(--primary) font-bold hover:underline">Order Now ></a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Regular Menu Section -->
+<section class="py-20 bg-(--sec-bg)" id="regular-menu">
+  <div class="container mx-auto px-4 text-center">
+    <div class="text-center md:flex justify-between items-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-(--main-text)">Our <span class="text-(--primary)">Regular</span>
+        Menu</h2>
+      <a href=""
+        class="inline-block mt-12 bg-(--primary) text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-(--primary) transition">
+        View All
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <!-- Item 1 -->
+      <div class="food-card-arch ">
+        <div class="arch-img-container">
+          <img src="../assets/images/item3.png" alt="Masala Dosa">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">South Indian</p>
+        <h3 class="font-bold text-xl mb-1">Masala Dosa</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star text-gray-300"></i>
+          <span class="text-(--text-gray) ml-1">(50)</span>
+        </div>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="text-xl font-bold text-(--text-dark)">₹150</p>
+          <a href="#product?id=1"
+            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="food-card-arch " style="animation-delay: 0.2s">
+        <div class="arch-img-container">
+          <img src="../assets/images/item4.png" alt="Pav Bhaji">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Gujarati</p>
+        <h3 class="font-bold text-xl mb-1">Pav Bhaji</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star text-gray-300"></i>
+          <span class="text-(--text-gray) ml-1">(50)</span>
+        </div>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="text-xl font-bold text-(--text-dark)">₹250</p>
+          <a href="#product?id=2"
+            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="food-card-arch ">
+        <div class="arch-img-container">
+          <img src="../assets/images/item1.png" alt="Dal Bati Churma">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Rajasthani</p>
+        <h3 class="font-bold text-xl mb-1">Dal Bati Churma</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star text-gray-300"></i>
+          <span class="text-(--text-gray) ml-1">(50)</span>
+        </div>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="text-xl font-bold text-(--text-dark)">₹450</p>
+          <a href=""
+            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+        </div>
+      </div>
+      <!-- Item 4 -->
+      <div class="food-card-arch ">
+        <div class="arch-img-container">
+          <img src="../assets/images/item4.png" alt="Tea Time Snacks">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Indian Tea Time</p>
+        <h3 class="font-bold text-xl mb-1">Tea Time Snacks</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star"></i>
+          <span class="text-(--text-gray) ml-1">(50)</span>
+        </div>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="text-xl font-bold text-(--text-dark)">₹200</p>
+          <a href="#product?id=4"
+            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="food-card-arch " style="animation-delay: 0.2s">
+        <div class="arch-img-container">
+          <img src="../assets/images/item1.png" alt="Salted Fenugreek">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Indian Tea</p>
+        <h3 class="font-bold text-xl mb-1">Salted Fenugreek</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star text-gray-300"></i><i class="fas fa-star text-gray-300"></i>
+          <span class="text-(--text-gray) ml-1">(50)</span>
+        </div>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="text-xl font-bold text-(--text-dark)">₹200</p>
+          <a href="#product?id=5"
+            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="food-card-arch " style="animation-delay: 0.4s">
+        <div class="arch-img-container">
+          <img src="../assets/images/item2.png" alt="Murukku">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Indian Snacks</p>
+        <h3 class="font-bold text-xl mb-1">Murukku</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star"></i>
+          <span class="text-(--text-gray) ml-1">(50)</span>
+        </div>
+        <div class="flex items-center justify-between mt-auto">
+          <p class="text-xl font-bold text-(--text-dark)">₹200</p>
+          <a href="#product?id=6"
+            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
+            Order Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Special Banners -->
+<section class=" bg-(--sec-bg) pb-10">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+      <!-- Left Banner: Offer 1 (Large) -->
+      <div class="">
+        <img src="../assets/images/offer3.png" alt="Special Offer 60% OFF"
+          class="w-full h-full object-cover rounded-[2.5rem] cover  shadow-lg">
+      </div>
+
+      <!-- Right Banners: Offer 2 & 3 (Stacked) -->
+      <div class="flex flex-col gap-8 ">
+        <div class="flex-1">
+          <img src="../assets/images/offer1.jpg" alt="Special Offer 25% OFF"
+            class="w-full h-full object-cover rounded-[2.5rem] shadow-lg">
+        </div>
+        <div class="flex-1">
+          <img src="../assets/images/offer2.jpg" alt="Indian Restaurant Offer"
+            class="w-full h-full object-cover rounded-[2.5rem] shadow-lg">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
