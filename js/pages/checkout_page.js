@@ -34,10 +34,25 @@ function initCheckout() {
         });
     });
     itemsContainer.innerHTML = cart.map(item => `
-        <div class="flex justify-between text-sm">
-            <span class="opacity-80">${item.name} (x${item.qty})</span>
-            <span class="font-medium">$${(item.price * item.qty).toFixed(2)}</span>
-        </div>
+       <div
+       class="rounded-3xl p-6 flex items-center justify-between shadow-lg border border-(--border) transition-all duration-300 hover:scale-[1.01]" style="background-color: var(--sec-bg);">
+       <div class="flex items-center gap-6">
+           <div class="w-24 h-24 rounded-2xl p-2 shrink-0 border border-(--border)" style="background-color: var(--main-bg);">
+               <img src="${item.mainImage}" alt="${item.name}"
+                   class="w-full h-full object-contain rounded-lg">
+           </div>
+           <div>
+               <h3 class="font-black text-lg" style="color: var(--main-text);">${item.name}</h3>
+               <p class="text-xs font-bold uppercase tracking-widest" style="color: var(--sec-text);">${item.price} x ${item.qty}</p>
+           </div>
+       </div>
+       <div class="flex items-center gap-8">
+           <div class="flex items-center gap-4 bg-(--primary) text-white rounded-full px-5 py-2 shadow-lg">
+               <span class="font-black text-sm">${item.qty}</span>
+           </div>
+           <span class="text-2xl font-black" style="color: var(--primary);"> $${(item.price * item.qty).toFixed(2)}</span>
+       </div>
+   </div>
     `).join('');
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -50,7 +65,7 @@ function initCheckout() {
     discountEl.textContent = `-$${discountAmount.toFixed(2)}`;
     totalEl.textContent = `$${total.toFixed(2)}`;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         massage('Order Placed Successfully! Thank you for shopping with us.', 'success');
@@ -66,10 +81,11 @@ function initCheckout() {
             orderTotal: total,
             orderItems: cart
         };
-        createOrder(order);
-        localStorage.removeItem(user.email);
-        localStorage.removeItem('appliedDiscount');
+        await createOrder(order);
 
+        // Clear cart for the user
+        await cartServices.updateCart(user.email, []);
+        localStorage.removeItem('appliedDiscount');
         window.location.hash = `#payment?orderId=${order.id}`;
     });
 }

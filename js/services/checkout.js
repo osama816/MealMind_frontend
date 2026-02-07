@@ -1,29 +1,34 @@
 import { getCurrentUserMail } from '../services/auth_services.js';
 
+// get all orders from localStorage
+export async function getAllOrders() {
+    const rawOrders = localStorage.getItem('order');
+    try {
+        return rawOrders ? JSON.parse(rawOrders) : [];
+    } catch (e) {
+        console.error("Failed to parse orders from localStorage", e);
+        return [];
+    }
+}
+
 // get user orders
 export async function getUserOrder() {
-    const order = localStorage.getItem('order');
     const userMail = getCurrentUserMail();
-    if (!order) {
-        return [];
-    }
-    const userOrder = JSON.parse(order).filter(o => o.email === userMail);
-    if (!userOrder) {
-        return [];
-    }
-    return userOrder;
+    if (!userMail) return [];
+
+    const allOrders = await getAllOrders();
+    return allOrders.filter(o => o.email === userMail);
 }
+
 // get user order by id
 export async function getUserOrderById(id) {
-    const userOrder = await getUserOrder();
-    if (!userOrder) {
-        return [];
-    }
-    return userOrder.find(o => o.id === id);
+    const userOrders = await getUserOrder();
+    return userOrders.find(o => o.id == id) || null;
 }
-//creat order
+
+// create order
 export async function createOrder(order) {
-    const orders = await getUserOrder();
-    orders.push(order);
-    localStorage.setItem('order', JSON.stringify(orders));
+    const allOrders = await getAllOrders();
+    allOrders.push(order);
+    localStorage.setItem('order', JSON.stringify(allOrders));
 }

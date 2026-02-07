@@ -37,12 +37,13 @@ export function displayCartItems() {
                         <img src="${item.mainImage || '../assets/images/item1.jpg'}" alt="${item.name || 'Product'}" class="w-full h-full object-contain">
                     </div>
                     <div class="flex-1">
-                        <h3 class="text-xl font-bold text-(--main-text) mb-1">${item.name || 'Unnamed Product'}</h3>
+                        <h3 class="text-xl font-bold mb-1">${item.name || 'Unnamed Product'}</h3>
                         <p class="text-(--sec-text) text-sm">${item.category || 'Delicious meal'}</p>
+                        <p class="text-(--sec-text) text-sm">${item.size || 'Medium'}</p>
                         <div class="mt-4 flex items-center gap-4 md:hidden">
                             <div class="flex items-center gap-4 bg-(--bg-cream) rounded-full px-4 py-1.5">
                                 <button onclick="updateQuantity('${item.productId}', -1)" class="text-(--primary) font-bold">-</button>
-                                <span class="font-bold text-(--main-text)">${item.qty || 1}</span>
+                                <span class="font-bold text-(--primary)">${item.qty || 1}</span>
                                 <button onclick="updateQuantity('${item.productId}', 1)" class="text-(--primary) font-bold">+</button>
                             </div>
                             <span class="text-xl font-bold text-(--primary) ml-auto">$${item.price || 0}</span>
@@ -52,7 +53,7 @@ export function displayCartItems() {
                 <div class="hidden md:flex items-center gap-10">
                     <div class="flex items-center gap-4 bg-(--bg-cream) rounded-full px-5 py-2">
                         <button onclick="updateQuantity('${item.productId}', -1)" class="text-(--primary) font-bold hover:scale-110 transition">-</button>
-                        <span class="font-bold min-w-[20px] text-center text-(--main-text)">${item.qty || 1}</span>
+                        <span class="font-bold min-w-[20px] text-center text-(--primary)">${item.qty || 1}</span>
                         <button onclick="updateQuantity('${item.productId}', 1)" class="text-(--primary) font-bold hover:scale-110 transition">+</button>
                     </div>
                     <span class="text-2xl font-bold min-w-[100px] text-right text-(--primary)">$${(item.price * (item.qty || 1)).toFixed(2)}</span>

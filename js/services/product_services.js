@@ -107,50 +107,70 @@ export function addReview(review) {
 }
 
 
-// Fetch all products [Not used]
-export function renderProducts(products, container) {
-  products.map((product) => {
-    let p = `<div class="product-link group relative flex-none w-64 h-96 mb-4 rounded-2xl border border-gray-200 overflow-hidden shadow-sm" key="${product.id}"> 
-  
-  <div class="absolute inset-0 z-0 transition-transform duration-500 group-hover:scale-110" 
-       style="background-image: url('${product.mainImage}'); background-size: cover; background-position: center;">
-  </div>
+// Centralized Product Card Template (Arch Style)
+export function renderProductCard(product, categoryName, animationClass = "", delay = "0") {
+  const discountedPrice = calculateDiscountedPrice(product.price, product.discountPercentage);
 
-  <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+  // Fix image paths for SPA (relative to root index.html)
+  const imagePath = product.mainImage.startsWith('../assets/') ? product.mainImage.substring(3) : product.mainImage;
 
-  <div class="absolute bottom-0 w-full z-20 p-4 backdrop-blur-xs bg-white/10 border-t border-white/10 text-white">
-    
-    <h3 class="font-medium text-sm line-clamp-2 mb-2">
-      ${product.name}
-    </h3>
+  // Dynamic Stars
+  const fullStars = Math.floor(product.rating);
+  const hasHalfStar = product.rating % 1 >= 0.5;
+  let starsHtml = '';
+  for (let j = 1; j <= 5; j++) {
+    if (j <= fullStars) {
+      starsHtml += '<i class="fas fa-star"></i>';
+    } else if (j === fullStars + 1 && hasHalfStar) {
+      starsHtml += '<i class="fas fa-star-half-alt"></i>';
+    } else {
+      starsHtml += '<i class="fas fa-star text-gray-300"></i>';
+    }
+  }
 
-    <div class="flex items-center gap-2 mb-2">
-      <div class="rating rating-xs" style="--rating: ${product.rating}"></div>
-      <span class="text-[10px] opacity-80">${product.rating} / 5</span>
-    </div>
+  return `
+    <div class="food-card-arch ${animationClass}" style="animation-delay: ${delay}s">
+        <div class="arch-img-container">
+            <img src="${imagePath}" alt="${product.name}">
+        </div>
+        <p class="text-(--primary) text-xs font-bold uppercase mb-1">${categoryName || 'Gourmet Selection'}</p>
+        <h3 class="font-bold text-xl mb-1 truncate w-full text-center text-(--primary)">${product.name}</h3>
+        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
+            ${starsHtml}
+            <span class="text-(--sec-text) ml-1 text-xs">(${product.rating})</span>
+        </div>
+        
+        <div class="flex items-center justify-between mt-auto w-full px-2">
+            ${product.discountPercentage ? `
+            <div class="flex flex-col items-start text-left">
+                <span class="font-bold text-lg text-(--main-text)">$${parseInt(discountedPrice)}</span>
+                <div class="flex gap-1 text-xs">
+                    <span class="text-gray-400 line-through">$${parseInt(product.price)}</span>
+                    <span class="text-red-500 font-bold">-${product.discountPercentage}%</span>
+                </div>
+            </div>` : `<div class="font-bold text-lg text-(--main-text)">$${parseInt(product.price)}</div>`}
+            
+            <a href="index.html#product?id=${product.id}"
+                class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center text-xs">
+                Order Now
+            </a>
+        </div>
+    </div>`;
+}
 
-    <div class="flex items-end justify-between">
-      <div class="flex flex-col">
-        ${product.discountPercentage > 0 ? `
-          <span class="text-[10px] line-through opacity-60">$${product.price}</span>
-        ` : `<span class="h-4"></span>`}
-        <span class="text-lg font-bold">
-          $${product.discountPercentage > 0
-        ? Math.floor(product.price - (product.price * product.discountPercentage) / 100)
-        : product.price}
-        </span>
-      </div>
+// Global render function
+export async function renderProducts(products, container) {
+  if (!container) return;
+  container.innerHTML = "";
 
-      ${product.discountPercentage > 0 ? `
-        <span class="bg-red-600 text-white px-2 py-0.5 rounded-md text-[10px] font-bold mb-1">
-          ${product.discountPercentage}% OFF
-        </span>
-      ` : ""}
-    </div>
-  </div>
-</div>`;
-    container.innerHTML += p;
-  });
+  const cardsHtml = await Promise.all(products.map(async (product, index) => {
+    const categoryName = product.categoryName || (await getCategoryById(product.categoryId))?.name;
+    const animationClass = index % 2 === 0 ? "animate-side" : "animate-top";
+    const delay = (index * 0.1).toFixed(1);
+    return renderProductCard(product, categoryName, animationClass, delay);
+  }));
+
+  container.innerHTML = cardsHtml.join('');
 }
 
 // make product on click go to product details page

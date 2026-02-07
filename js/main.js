@@ -3,7 +3,6 @@ import { routes } from "./config/routes.js";
 import { initTheme } from "./Utilities/theme.js";
 import { renderAuthButtons } from "./Utilities/renderAuthButtons.js";
 import * as authService from "./services/auth_services.js";
-import { getAllProducts } from "./services/product_services.js";
 // import * as checkout from './services/checkout.js';
 
 // checkout.setOrderDefault();
@@ -38,6 +37,7 @@ function getPage() {
 // Main router function
 // Handles page navigation and layout visibility
 async function router() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   const page = getPage();
 
   // Redirect based on authentication status

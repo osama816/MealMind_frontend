@@ -30,11 +30,12 @@ const categoryContainer = document.getElementById("categories");
 /* =========> Apply Filtration  <=========  */
 //Default Values
 let filters = {
-    minPrice: 50,
-    maxPrice: 1000,
+    minPrice: 25,
+    maxPrice: 200,
     categoryId: null,
     dressStyle: [],
-    size: []
+    size: [],
+    searchQuery: "" // Add search query
 };
 
 //1. ===== Price Slider Track [Determine price] =====
@@ -82,21 +83,57 @@ function updateSlider() {
     )
   `;
 
-    minPrice.textContent = `$ ${minVal}`;
-    maxPrice.textContent = `$ ${maxVal}`;
-    filters.minPrice = minVal
+    minPrice.textContent = `${minVal}`;
+    maxPrice.textContent = `${maxVal}`;
+    filters.minPrice = minVal;
     filters.maxPrice = maxVal;
-    console.log(filters);
-
-
-
 }
 
 minRange.addEventListener("input", updateSlider);
 maxRange.addEventListener("input", updateSlider);
 
+// Reload products when user finishes sliding (change event)
+minRange.addEventListener("change", () => {
+    currentPage = 1;
+    loadPage();
+});
+maxRange.addEventListener("change", () => {
+    currentPage = 1;
+    loadPage();
+});
+
 //in case the user does not change the price values
 updateSlider();
+
+// Get search query from URL if exists
+function getSearchQueryFromUrl() {
+    const urlParams = new URLSearchParams(window.location.hash.split('?')[1] || '');
+    return urlParams.get('search') || "";
+}
+
+let searchQuery = getSearchQueryFromUrl();
+if (searchQuery) {
+    filters.searchQuery = searchQuery;
+}
+
+// Listen for hash changes to update search
+window.addEventListener('hashchange', () => {
+    const newQuery = getSearchQueryFromUrl();
+    if (newQuery !== filters.searchQuery) {
+        filters.searchQuery = newQuery;
+        // Update input field if exists
+        const productSearchInput = document.querySelector('input[placeholder="Search for food..."]');
+        if (productSearchInput) {
+            productSearchInput.value = newQuery;
+        }
+        currentPage = 1;
+        loadPage();
+    }
+});
+if (searchQuery) {
+    filters.searchQuery = searchQuery;
+    console.log('Search query:', searchQuery);
+}
 
 //2. ======= Determine the size ========
 const sizeButtons = document.querySelectorAll(".size-item");
@@ -108,22 +145,21 @@ sizeButtons.forEach(btn => {
         btn.classList.toggle("active");
 
         if (btn.classList.contains("active")) {
-            // ADD
             if (!filters.size.includes(value)) {
                 filters.size.push(value);
             }
         } else {
-            // REMOVE
             filters.size = filters.size.filter(size => size !== value);
         }
 
-        console.log(filters.size);
+        currentPage = 1;
+        loadPage();
     });
 });
 
 //3. ======= Determine the dress style =======
 
-const dressItems = document.querySelectorAll(".style");
+const dressItems = document.querySelectorAll(".style-item");
 
 dressItems.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -132,18 +168,17 @@ dressItems.forEach(btn => {
         btn.classList.toggle("active");
 
         if (btn.classList.contains("active")) {
-            // ADD
             if (!filters.dressStyle.includes(value)) {
                 filters.dressStyle.push(value);
             }
         } else {
-            // REMOVE
             filters.dressStyle = filters.dressStyle.filter(
                 dress => dress !== value
             );
         }
 
-        console.log(filters.dressStyle);
+        currentPage = 1;
+        loadPage();
     });
 });
 
@@ -168,29 +203,35 @@ category.forEach(btn => {
     })
 });
 
-function renderProducts(allProducts) {
-    var productsContainer = document.querySelector(".product-items");
-    productsContainer.innerHTML = ""
+async function renderProducts(allProducts) {
+    const productsContainer = document.querySelector(".product-items");
+    if (!productsContainer) return;
+
+    productsContainer.innerHTML = "";
 
     if (allProducts.length > 0) {
-        allProducts.forEach((item, index) => {
+        // Collect all HTML as strings first to prevent race conditions and flickering
+        const productsHtmlPromises = allProducts.map(async (item, index) => {
+            const categoryName = await productService.getCategoryById(item.categoryId);
             const animationClass = index % 2 === 0 ? "animate-side" : "animate-top";
             const delay = (index * 0.1).toFixed(1);
-            productsContainer.innerHTML += `
+            const discountedPrice = parseInt(item.price - item.price * item.discountPercentage / 100);
+
+            return `
             <div class="food-card-arch ${animationClass}" style="animation-delay: ${delay}s">
                 <div class="arch-img-container">
                     <img src="${item.mainImage}" alt="${item.name}">
                 </div>
-                <p class="text-(--primary) text-xs font-bold uppercase mb-1">Category</p>
-                <h3 class="font-bold text-xl mb-1 truncate w-full text-center">${item.name}</h3>
+                <p class="text-(--primary) text-xs font-bold uppercase mb-1">${categoryName.name}</p>
+                <h3 class="font-bold text-xl mb-1 truncate w-full text-center text-(--primary)">${item.name}</h3>
                  <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-                        <i class="fas fa-star"></i><span class="text-(--sec-text) ml-1 text-xs">(${item.rating})</span>
+                        <i class="fas fa-star"></i><span class="ml-1 text-xs text-(--sec-text)">(${item.rating})</span>
                    </div>
                    
                 <div class="flex items-center justify-between mt-auto w-full px-2">
                      ${item.discountPercentage ? `
                      <div class="flex flex-col items-start">
-                        <span class="font-bold text-lg text-(--main-text)">$${parseInt(item.price - item.price * item.discountPercentage / 100)}</span>
+                        <span class="font-bold text-lg text-(--main-text)">$${discountedPrice}</span>
                         <div class="flex gap-1 text-xs">
                             <span class="text-gray-400 line-through">$${parseInt(item.price)}</span>
                             <span class="text-red-500 font-bold">-${item.discountPercentage}%</span>
@@ -203,9 +244,11 @@ function renderProducts(allProducts) {
                     </a>
                 </div>
             </div>
-            `
+            `;
+        });
 
-        })
+        const htmlResults = await Promise.all(productsHtmlPromises);
+        productsContainer.innerHTML = htmlResults.join('');
     } else {
         toggleEmptyState(false);
     }
@@ -274,25 +317,20 @@ function sortProducts(products, sortType) {
     const sorted = [...products];
 
     switch (sortType) {
-        case "price-asc":
+        case "price-low": // Changed from price-asc
             return sorted.sort(
                 (a, b) => getFinalPrice(a) - getFinalPrice(b)
             );
-        case "price-desc":
+        case "price-high": // Changed from price-desc
             return sorted.sort(
                 (a, b) => getFinalPrice(b) - getFinalPrice(a)
             );
         case "rating":
             return sorted.sort((a, b) => b.rating - a.rating);
-        case "name-asc":
+        case "name": // Changed from name-asc/desc splitting
             return sorted.sort((a, b) =>
                 a.name.localeCompare(b.name)
             );
-        case "name-desc":
-            return sorted.sort((a, b) =>
-                b.name.localeCompare(a.name)
-            );
-
         default:
             return sorted;
     }
@@ -344,17 +382,26 @@ document.getElementById("nextBtn").onclick = () => {
 loadPage();
 
 
-document.getElementById("btnFilter").addEventListener("click", function () {
+document.getElementById("btnFilter")?.addEventListener("click", function () {
     currentPage = 1;
     loadPage();
     overlay.classList.remove("overlay");
     filterSideBar.classList.remove("show-filter")
-
 })
 
 
 function filterProducts(products, filters) {
     return products.filter(product => {
+
+        // Search Query - filter by name or description
+        if (filters.searchQuery && filters.searchQuery.trim() !== '') {
+            const query = filters.searchQuery.toLowerCase();
+            const matchName = product.name.toLowerCase().includes(query);
+            const matchDesc = product.description.toLowerCase().includes(query);
+            if (!matchName && !matchDesc) {
+                return false;
+            }
+        }
 
         // Category
         if (filters.categoryId !== null &&
@@ -362,7 +409,7 @@ function filterProducts(products, filters) {
             return false;
         }
 
-        // Size
+        // Size (portion sizes for food)
         if (filters.size && filters.size.length > 0) {
             const hasSize = product.sizes.some(size =>
                 filters.size.includes(size)
@@ -390,34 +437,54 @@ function filterProducts(products, filters) {
     });
 }
 function toggleEmptyState(hasProducts) {
-    const emptyState = document.getElementById("emptyState");
+    const emptyState = document.getElementById("empty-state");
     const productsGrid = document.querySelector(".product-items");
-    const pagination = document.querySelector(".pagination")
+    // Pagination container is the parent of #prevBtn
+    const pagination = document.getElementById("prevBtn")?.parentElement;
 
     if (hasProducts) {
-        emptyState.classList.add("hidden");
-        productsGrid.classList.remove("hidden");
-        pagination.classList.remove("hidden")
+        if (emptyState) emptyState.classList.add("hidden");
+        if (productsGrid) productsGrid.classList.remove("hidden");
+        if (pagination) pagination.classList.remove("hidden");
     } else {
-        emptyState.classList.remove("hidden");
-        productsGrid.classList.add("hidden");
-        pagination.classList.add("hidden")
-
+        if (emptyState) emptyState.classList.remove("hidden");
+        if (emptyState) emptyState.style.display = "flex"; // Ensure flex display for centering
+        if (productsGrid) productsGrid.classList.add("hidden");
+        if (pagination) pagination.classList.add("hidden");
     }
 }
 document.getElementById("clearFiltersBtn").addEventListener("click", () => {
+    // 1. Reset filters object
     filters = {
-        minPrice: 50,
-        maxPrice: 350,
+        minPrice: 25,
+        maxPrice: 200,
         categoryId: null,
         dressStyle: [],
-        size: []
+        size: [],
+        searchQuery: ""
     };
-    window.location.reload();
-    minRange.value = 50;
-    maxRange.value = 350;
+
+    // 2. Clear UI active states
+    document.querySelectorAll(".category, .size-item, .style-item").forEach(el => el.classList.remove("active"));
+
+    // 3. Reset Slider UI
+    minRange.value = 25;
+    maxRange.value = 200;
     updateSlider();
 
+    // 4. Reset Labels & Headers
+    selectedCategoryContainer.forEach(i => i.innerHTML = "All Products");
+    if (productSearchInput) productSearchInput.value = "";
+
+    // 5. Clear URL Hash Parameters if any
+    const baseUrl = window.location.hash.split('?')[0];
+    if (window.location.hash.includes('?')) {
+        window.location.hash = baseUrl;
+    }
+
+    // 6. Refresh List
+    currentPage = 1;
+    loadPage();
 });
 
 
@@ -435,8 +502,19 @@ closeBtn.addEventListener("click", function () {
 
 })
 
+// In-page search functionality
+const productSearchInput = document.querySelector('input[placeholder="Search for food..."]');
+if (productSearchInput) {
+    productSearchInput.addEventListener('input', (e) => {
+        filters.searchQuery = e.target.value.trim();
+        currentPage = 1;
+        loadPage();
+    });
 
-
-
+    // Set initial value if coming from header search
+    if (filters.searchQuery) {
+        productSearchInput.value = filters.searchQuery;
+    }
+}
 
 

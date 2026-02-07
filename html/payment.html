@@ -1,52 +1,89 @@
-<div class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[70vh]">
-    <div
-        class="bg-(--bg) dark:bg-(--bgsecond) p-8 rounded-3xl shadow-xl max-w-md w-full text-center border border-(--border) dark:border-white/10 transition-colors duration-300">
-        <div
-            class="w-20 h-20 bg-green-100 dark:bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-            </svg>
-        </div>
+<section class="min-h-[80vh] flex items-center justify-center p-4"
+    style="background-color: var(--main-bg); color: var(--main-text);">
+    <div class="w-full max-w-md mx-auto">
+        <!-- Main Card -->
+        <div class="rounded-[3rem] shadow-2xl overflow-hidden border border-(--border) transition-all duration-500 animate-top"
+            style="background-color: var(--sec-bg);">
 
-        <h1 class="text-3xl font-extrabold mb-2 text-(--onbg)">Payment Successful!</h1>
-        <p class="text-(--onbg) opacity-60 mb-8">Thank you for your purchase. Your order has been placed
-            successfully.</p>
+            <!-- Success Header -->
+            <div class="p-10 text-center relative overflow-hidden" style="background-color: var(--primary);">
+                <!-- Decorative Circles -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
 
-        <div id="order-summary"
-            class="bg-(--bgsecond) dark:bg-black/20 rounded-2xl p-6 mb-8 text-left border border-(--border) dark:border-white/10">
-            <h2 class="font-bold text-(--onbg) mb-4 border-b border-(--border) dark:border-white/10 pb-2">Order Summary
-            </h2>
-            <div class="space-y-2 text-sm text-(--onbg) opacity-70">
-                <div class="flex justify-between">
-                    <span>Order ID:</span>
-                    <span id="display-order-id" class="font-semibold text-(--onbg)">#000000</span>
+                <!-- Success Icon -->
+                <div
+                    class="relative inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-md rounded-full mb-6 border border-white/30">
+                    <i class="fas fa-check text-4xl text-white"></i>
                 </div>
-                <div class="flex justify-between">
-                    <span>Date:</span>
-                    <span id="display-order-date" class="font-semibold text-(--onbg)">Feb 01,
-                        2026</span>
+
+                <h1 class="text-3xl font-black text-white uppercase tracking-widest mb-1 font-(family-name:--fsecond)">
+                    Payment Success</h1>
+                <p class="text-white/80 font-medium">Your meal is on its way!</p>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-8 md:p-10 space-y-6">
+                <!-- Order Details -->
+                <div class="rounded-3xl p-6 border border-(--border) space-y-4"
+                    style="background-color: var(--main-bg);">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold uppercase tracking-tighter text-xs" style="color: var(--sec-text);">Order
+                            ID</span>
+                        <span id="display-order-id" class="font-bold" style="color: var(--primary);">#000000</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-bold uppercase tracking-tighter text-xs" style="color: var(--sec-text);">Order
+                            Date</span>
+                        <span id="display-order-date" class="font-bold" style="color: var(--main-text);">Feb 08,
+                            2026</span>
+                    </div>
+                    <div class="pt-4 border-t border-(--border) flex justify-between items-center">
+                        <span class="text-lg font-bold" style="color: var(--main-text);">Total Amount</span>
+                        <span id="display-order-total" class="text-2xl font-black"
+                            style="color: var(--primary);">$0.00</span>
+                    </div>
                 </div>
-                <div class="flex justify-between pt-2 border-t border-(--border) dark:border-white/10 mt-2">
-                    <span class="font-bold text-(--onbg)">Total Paid:</span>
-                    <span id="display-order-total" class="font-bold text-green-600">$0.00</span>
+
+                <!-- Fast Delivery Promo -->
+                <div class="flex items-center gap-4 p-4 rounded-2xl border border-(--border)"
+                    style="background-color: rgba(255, 114, 0, 0.05);">
+                    <div class="w-10 h-10 bg-(--primary) rounded-full flex items-center justify-center shrink-0"
+                        style="background-color: var(--primary);">
+                        <i class="fas fa-truck text-white text-sm"></i>
+                    </div>
+                    <p class="text-sm leading-tight" style="color: var(--sec-text);">
+                        <strong class="block mb-0.5" style="color: var(--main-text);">Fast Delivery</strong>
+                        Estimated arrival: 35-45 minutes
+                    </p>
                 </div>
+
+                <!-- Actions -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <button id="download-invoice"
+                        class="text-white py-4 rounded-2xl font-bold uppercase tracking-wider transition shadow-lg flex items-center justify-center gap-2"
+                        style="background-color: var(--primary);">
+                        <i class="fas fa-file-invoice"></i>
+                        Invoice
+                    </button>
+                    <a href="#home"
+                        class="py-4 rounded-2xl font-bold uppercase tracking-wider border border-(--border) transition shadow-md text-center flex items-center justify-center gap-2"
+                        style="background-color: var(--main-bg); color: var(--main-text);">
+                        <i class="fas fa-home"></i>
+                        Back Home
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Accent -->
+            <div class="h-1.5" style="background: linear-gradient(to right, var(--primary), #fbbf24, var(--primary));">
             </div>
         </div>
 
-        <div class="flex flex-col gap-3">
-            <button id="download-invoice"
-                class="bg-(--onbg) text-(--bg) py-4 px-6 rounded-2xl font-bold hover:opacity-80 transition duration-300 flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download Invoice
-            </button>
-            <a href="#home" class="text-(--onbg) opacity-60 font-semibold hover:opacity-100 transition duration-300">
-                Return to Home
-            </a>
-        </div>
+        <!-- Help Link -->
+        <p class="text-center mt-8 text-sm font-medium" style="color: var(--sec-text);">
+            Need help? <a href="#chatbot" class="hover:underline font-bold" style="color: var(--primary);">Chat
+                Support</a>
+        </p>
     </div>
-</div>
+</section>

@@ -3,7 +3,7 @@ export function massage(message, type = "success") {
 
     const colors = {
         success: "bg-green-500",
-        error: "bg-red-500",
+        error: "bg-(--primary)",
         warning: "bg-yellow-500",
     };
 

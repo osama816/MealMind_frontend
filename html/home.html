@@ -83,173 +83,27 @@
           Popular</span></h2>
       <h2 class="text-3xl md:text-5xl font-bold text-(--main-text)">Indian Dish</h2>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-      <!-- Item 1 -->
-      <div class="text-center">
-        <div class="popular-ellipse mb-6">
-          <img src="../assets/images/item1.png" alt="Indian Vegetable Pulao">
-        </div>
-        <h3 class="font-bold text-xl mb-2 text-(--main-text)">Indian Vegetable Pulao</h3>
-        <a href="#product?id=1" class="text-(--primary) font-bold hover:underline">Order Now ></a>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="text-center">
-        <div class="popular-ellipse mb-6">
-          <img src="../assets/images/item2.png" alt="Paneer Bhua Masala">
-        </div>
-        <h3 class="font-bold text-xl mb-2 text-(--main-text)">Paneer Bhua Masala</h3>
-        <a href="#product?id=2" class="text-(--primary) font-bold hover:underline">Order Now ></a>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="text-center">
-        <div class="popular-ellipse mb-6">
-          <img src="../assets/images/item3.png" alt="Vermicelli Upma">
-        </div>
-        <h3 class="font-bold text-xl mb-2 text-(--main-text)">Vermicelli Upma</h3>
-        <a href="#product?id=3" class="text-(--primary) font-bold hover:underline">Order Now ></a>
-      </div>
+    <div id="popular-products-container"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <!-- Injected by JS -->
     </div>
   </div>
 </section>
+
 <!-- Regular Menu Section -->
 <section class="py-20 bg-(--sec-bg)" id="regular-menu">
   <div class="container mx-auto px-4 text-center">
     <div class="text-center md:flex justify-between items-center mb-16">
       <h2 class="text-3xl md:text-5xl font-bold text-(--main-text)">Our <span class="text-(--primary)">Regular</span>
         Menu</h2>
-      <a href=""
+      <a href="#products"
         class="inline-block mt-12 bg-(--primary) text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-(--primary) transition">
         View All
       </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-      <!-- Item 1 -->
-      <div class="food-card-arch ">
-        <div class="arch-img-container">
-          <img src="../assets/images/item3.png" alt="Masala Dosa">
-        </div>
-        <p class="text-(--primary) text-xs font-bold uppercase mb-1">South Indian</p>
-        <h3 class="font-bold text-xl mb-1">Masala Dosa</h3>
-        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-            class="fas fa-star text-gray-300"></i>
-          <span class="text-(--text-gray) ml-1">(50)</span>
-        </div>
-        <div class="flex items-center justify-between mt-auto">
-          <p class="text-xl font-bold text-(--text-dark)">₹150</p>
-          <a href="#product?id=1"
-            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-            Order Now
-          </a>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="food-card-arch " style="animation-delay: 0.2s">
-        <div class="arch-img-container">
-          <img src="../assets/images/item4.png" alt="Pav Bhaji">
-        </div>
-        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Gujarati</p>
-        <h3 class="font-bold text-xl mb-1">Pav Bhaji</h3>
-        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-            class="fas fa-star text-gray-300"></i>
-          <span class="text-(--text-gray) ml-1">(50)</span>
-        </div>
-        <div class="flex items-center justify-between mt-auto">
-          <p class="text-xl font-bold text-(--text-dark)">₹250</p>
-          <a href="#product?id=2"
-            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-            Order Now
-          </a>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="food-card-arch ">
-        <div class="arch-img-container">
-          <img src="../assets/images/item1.png" alt="Dal Bati Churma">
-        </div>
-        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Rajasthani</p>
-        <h3 class="font-bold text-xl mb-1">Dal Bati Churma</h3>
-        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-            class="fas fa-star text-gray-300"></i>
-          <span class="text-(--text-gray) ml-1">(50)</span>
-        </div>
-        <div class="flex items-center justify-between mt-auto">
-          <p class="text-xl font-bold text-(--text-dark)">₹450</p>
-          <a href=""
-            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-            Order Now
-          </a>
-        </div>
-      </div>
-      <!-- Item 4 -->
-      <div class="food-card-arch ">
-        <div class="arch-img-container">
-          <img src="../assets/images/item4.png" alt="Tea Time Snacks">
-        </div>
-        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Indian Tea Time</p>
-        <h3 class="font-bold text-xl mb-1">Tea Time Snacks</h3>
-        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-            class="fas fa-star"></i>
-          <span class="text-(--text-gray) ml-1">(50)</span>
-        </div>
-        <div class="flex items-center justify-between mt-auto">
-          <p class="text-xl font-bold text-(--text-dark)">₹200</p>
-          <a href="#product?id=4"
-            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-            Order Now
-          </a>
-        </div>
-      </div>
-
-      <!-- Item 5 -->
-      <div class="food-card-arch " style="animation-delay: 0.2s">
-        <div class="arch-img-container">
-          <img src="../assets/images/item1.png" alt="Salted Fenugreek">
-        </div>
-        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Indian Tea</p>
-        <h3 class="font-bold text-xl mb-1">Salted Fenugreek</h3>
-        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-            class="fas fa-star text-gray-300"></i><i class="fas fa-star text-gray-300"></i>
-          <span class="text-(--text-gray) ml-1">(50)</span>
-        </div>
-        <div class="flex items-center justify-between mt-auto">
-          <p class="text-xl font-bold text-(--text-dark)">₹200</p>
-          <a href="#product?id=5"
-            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-            Order Now
-          </a>
-        </div>
-      </div>
-
-      <!-- Item 6 -->
-      <div class="food-card-arch " style="animation-delay: 0.4s">
-        <div class="arch-img-container">
-          <img src="../assets/images/item2.png" alt="Murukku">
-        </div>
-        <p class="text-(--primary) text-xs font-bold uppercase mb-1">Indian Snacks</p>
-        <h3 class="font-bold text-xl mb-1">Murukku</h3>
-        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-            class="fas fa-star"></i>
-          <span class="text-(--text-gray) ml-1">(50)</span>
-        </div>
-        <div class="flex items-center justify-between mt-auto">
-          <p class="text-xl font-bold text-(--text-dark)">₹200</p>
-          <a href="#product?id=6"
-            class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-            Order Now
-          </a>
-        </div>
-      </div>
+    <div id="regular-menu-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <!-- Injected by JS -->
     </div>
   </div>
 </section>

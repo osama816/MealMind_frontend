@@ -14,8 +14,16 @@
                     <img id="profile-avatar" src="../assets/images/default_user.jpg" alt="Profile"
                         class="w-full h-full object-cover">
                 </div>
-                <h2 id="profile-name" class="text-2xl font-bold text-(--main-text) mb-1">Guest User</h2>
-                <p id="profile-email" class="text-(--sec-text) mb-6">guest@example.com</p>
+                <h2 id="profile-name" class="text-2xl font-black text-(--main-text) mb-1 uppercase tracking-tighter">
+                    Guest User</h2>
+                <p id="profile-email" class="text-xs font-bold text-(--sec-text) mb-8 uppercase tracking-widest">
+                    guest@example.com</p>
+
+                <button id="logout-btn"
+                    class="w-full flex items-center justify-center gap-3 bg-red-500/10 text-red-500 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-red-500 hover:text-white transition-all shadow-sm">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Sign Out
+                </button>
             </div>
 
             <!-- Order History -->

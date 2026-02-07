@@ -38,6 +38,8 @@
   --border-dashed: #FF7200;
 
   /* Semantic Mappings */
+  --bg: var(--bg-cream);
+  --onbg: var(--text-dark);
   --main-bg: var(--bg-cream);
   --sec-bg: var(--bg-white);
   --main-text: var(--text-dark);
@@ -51,6 +53,8 @@
 
 /* Dark theme overrides */
 .dark {
+  --bg: #1A1A1A;
+  --onbg: #F5F5F5;
   --main-bg: #1A1A1A;
   --sec-bg: #262626;
   --main-text: #F5F5F5;
@@ -63,7 +67,7 @@
    =============================== */
 body {
   background-color: var(--main-bg);
-  color: var(--onbg);
+  color: var(--main-text);
   font-family: var(--fprim);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
@@ -187,20 +191,34 @@ main {
 
 /* ===================>Inputs Range style<=============== */
 input[type="range"]::-webkit-slider-thumb {
-  pointer-events: all;
-  width: 18px;
-  height: 18px;
-  background: var(--onbg);
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
   border-radius: 50%;
   appearance: none;
+  cursor: pointer;
+  margin-top: -8px;
+  /* Centers thumb vertically on track */
+  position: relative;
+  z-index: 50;
+  /* Ensure on top */
+  border: 2px solid white;
+  /* Make it pop */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 input[type="range"]::-moz-range-thumb {
-  pointer-events: all;
-  width: 18px;
-  height: 18px;
-  background: var(--onbg);
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
   border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  position: relative;
+  z-index: 50;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* =============> Rating Stars style <============= */

@@ -3,57 +3,89 @@
         <div class="flex flex-col lg:flex-row gap-12">
 
             <!-- Sidebar Filters -->
-            <aside class="lg:w-1/4 space-y-8">
-                <div class="bg-(--sec-bg) rounded-4xl p-8  shadow-sm">
-                    <h2 class="text-2xl font-bold mb-8 text-(--main-text)">Filters</h2>
-
-                    <!-- Category Filter -->
-                    <div class="mb-10">
-                        <h3 class="font-bold text-lg mb-4 text-(--primary)">Category</h3>
-                        <div class="space-y-3 text-(--main-text)">
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" class="w-5 h-5 accent-(--primary) rounded border-gray-300"
-                                    checked>
-                                <span class="group-hover:text-(--primary) transition">All Items</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" class="w-5 h-5 accent-(--primary) rounded border-gray-300">
-                                <span class="group-hover:text-(--primary) transition">Indian Main</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" class="w-5 h-5 accent-(--primary) rounded border-gray-300">
-                                <span class="group-hover:text-(--primary) transition">Snacks</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <input type="checkbox" class="w-5 h-5 accent-(--primary) rounded border-gray-300">
-                                <span class="group-hover:text-(--primary) transition">Desserts</span>
-                            </label>
-                        </div>
+            <aside class="lg:w-1/4 space-y-8 filters">
+                <div class="bg-(--sec-bg) rounded-4xl p-8 shadow-sm">
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-2xl font-bold text-(--main-text)">Filters</h2>
+                        <button id="closeBtn" class="lg:hidden text-(--main-text)">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
 
-                    <!-- Price Range -->
+                    <!-- Categories -->
+                    <div class="mb-10">
+                        <h3 class="font-bold text-lg mb-4 text-(--primary)">Categories</h3>
+                        <ul id="categories" class="space-y-2">
+                            <!-- Categories will be loaded dynamically -->
+                        </ul>
+                    </div>
+
+                    <!-- Price Range Slider -->
                     <div class="mb-10">
                         <h3 class="font-bold text-lg mb-4 text-(--primary)">Price Range</h3>
-                        <input type="range" class="w-full accent-(--primary) bg-(--border)" min="0" max="1000"
-                            step="50">
-                        <div class="flex justify-between text-sm mt-2 text-(--sec-text)">
-                            <span>₹0</span>
-                            <span>₹1000</span>
+                        <div class="relative h-2 bg-gray-200 rounded-full mb-6">
+                            <div id="sliderTrack" class="absolute h-full bg-(--primary) rounded-full"></div>
+                            <input type="range" id="minRange" min="25" max="200" value="25"
+                                class="absolute w-full h-2 appearance-none bg-transparent pointer-events-none z-20">
+                            <input type="range" id="maxRange" min="25" max="200" value="200"
+                                class="absolute w-full h-2 appearance-none bg-transparent pointer-events-none z-20">
+                        </div>
+                        <div class="flex justify-between text-sm text-(--sec-text)">
+                            <span>$<span id="minPrice">25</span></span>
+                            <span>$<span id="maxPrice">200</span></span>
                         </div>
                     </div>
 
-                    <button id="applyFilters"
-                        class="bg-(--primary) text-white font-bold w-full py-3 rounded-2xl hover:opacity-90 transition active:scale-95 shadow-md">Apply
-                        Filters</button>
+                    <!-- Portion Sizes -->
+                    <div class="mb-10">
+                        <h3 class="font-bold text-lg mb-4 text-(--primary)">Portion Size</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="size-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition"
+                                data-value="Small">Small</button>
+                            <button
+                                class="size-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition"
+                                data-value="Regular">Regular</button>
+                            <button
+                                class="size-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition"
+                                data-value="Large">Large</button>
+                        </div>
+                    </div>
+
+                    <!-- Cuisine Style -->
+                    <div class="mb-10">
+                        <h3 class="font-bold text-lg mb-4 text-(--primary)">Cuisine Type</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="style-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition text-sm"
+                                data-value="breakfast">Breakfast</button>
+                            <button
+                                class="style-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition text-sm"
+                                data-value="comfort-food">Comfort</button>
+                            <button
+                                class="style-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition text-sm"
+                                data-value="italian">Italian</button>
+                            <button
+                                class="style-item px-4 py-2 rounded-full border-2 border-gray-300 text-(--main-text) hover:border-(--primary) hover:text-(--primary) transition text-sm"
+                                data-value="healthy">Healthy</button>
+                        </div>
+                    </div>
+
+                    <!-- Clear Filters -->
+                    <button id="clearFiltersBtn"
+                        class="bg-(--primary) text-(--main-text) font-bold w-full py-3 rounded-2xl hover:bg-gray-300 transition active:scale-95 shadow-md mb-3">
+                        Clear Filters
+                    </button>
                 </div>
 
                 <!-- Featured Banner -->
-                <div class="bg-(--primary) rounded-4xl p-8 text-white relative overflow-hidden group">
+                <div class="bg-(--primary) rounded-4xl p-8 text-white relative overflow-hidden group hidden lg:block">
                     <h3 class="text-2xl font-bold mb-2 relative z-10">Fresh & Hot</h3>
                     <p class="opacity-80 mb-6 relative z-10">Get 20% OFF on your first order!</p>
                     <button
-                        class="bg-white text-(--primary) font-bold py-2 px-6 rounded-full text-sm hover:scale-105 transition relative z-10">Claim
-                        Now</button>
+                        class="bg-white text-(--primary) font-bold py-2 px-6 rounded-full text-sm hover:scale-105 transition relative z-10">
+                        Claim Now
+                    </button>
                     <div
                         class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -61,93 +93,81 @@
             </aside>
 
             <!-- Main Content -->
-            <div class="lg:w-3/4 space-y-8 rounded-4xl p-8 bg-(--sec-bg) flex flex-col min-h-[800px]">
+            <div class="lg:w-3/4 space-y-8">
                 <!-- Top Bar -->
-                <div
-                    class="flex flex-col md:flex-row items-center justify-between gap-6 bg-(--sec-bg) rounded-3xl p-6  shadow-sm">
-                    <div class="relative w-full md:w-96">
-                        <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-(--text-gray)"></i>
-                        <input type="text" placeholder="Search for food..."
-                            class="w-full bg-(--main-bg) text-(--main-text) border-none rounded-2xl py-3 pl-12 pr-4 outline-none focus:ring-2 focus:ring-(--primary) transition shadow-inner">
+                <div class="bg-(--sec-bg) rounded-4xl p-6 shadow-sm">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <!-- Search -->
+                        <div class="relative w-full md:w-96">
+                            <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-(--text-gray)"></i>
+                            <input type="text" placeholder="Search for food..."
+                                class="w-full bg-(--main-bg) text-(--main-text) border-none rounded-2xl py-3 pl-12 pr-4 outline-none focus:ring-2 focus:ring-(--primary) transition shadow-inner">
+                        </div>
+
+                        <!-- Filter Toggle (Mobile) -->
+                        <button id="settings"
+                            class="lg:hidden bg-(--primary) text-white px-6 py-3 rounded-2xl flex items-center gap-2">
+                            <i class="fas fa-filter"></i>
+                            Filters
+                        </button>
+
+                        <!-- Sort -->
+                        <div class="flex items-center gap-3">
+                            <label class="text-(--sec-text) text-sm">Sort by:</label>
+                            <select id="sort"
+                                class="bg-(--main-bg) text-(--main-text) border border-(--border) rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-(--primary)">
+                                <option value="default">Default</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Rating</option>
+                                <option value="name">Name</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Selected Category Display -->
+                    <div class="mt-4 text-(--sec-text) text-sm">
+                        Showing: <span class="selectedCategory font-bold text-(--primary)">All Products</span>
                     </div>
                 </div>
 
                 <!-- Product Grid -->
-                <div id="productGrid" class="product-items grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Item 1 -->
-                    <div class="food-card-arch ">
-                        <div class="arch-img-container">
-                            <img src="../assets/images/item3.png" alt="Masala Dosa">
-                        </div>
-                        <p class="text-(--primary) text-xs font-bold uppercase mb-1">South Indian</p>
-                        <h3 class="font-bold text-xl mb-1">Masala Dosa</h3>
-                        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star text-gray-300"></i>
-                            <span class="text-(--text-gray) ml-1">(50)</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-auto">
-                            <p class="text-xl font-bold text-(--main-text)">₹150</p>
-                            <a href="#product?id=1"
-                                class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-                                Order Now
-                            </a>
-                        </div>
+                <div class="bg-(--sec-bg) rounded-4xl p-8 min-h-[600px] flex flex-col">
+                    <div
+                        class="product-items grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 mx-auto w-full max-w-6xl">
+                        <!-- Products will be loaded dynamically here -->
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="food-card-arch ">
-                        <div class="arch-img-container">
-                            <img src="../assets/images/item3.png" alt="Masala Dosa">
-                        </div>
-                        <p class="text-(--primary) text-xs font-bold uppercase mb-1">South Indian</p>
-                        <h3 class="font-bold text-xl mb-1">Masala Dosa</h3>
-                        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star text-gray-300"></i>
-                            <span class="text-(--text-gray) ml-1">(50)</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-auto">
-                            <p class="text-xl font-bold text-(--main-text)">₹150</p>
-                            <a href="#product?id=1"
-                                class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-                                Order Now
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Empty State -->
+                    <!-- <div id="empty-state" class="hidden flex-col items-center justify-center py-20">
+                        <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-bold text-(--main-text) mb-2">No products found</h3>
+                        <p class="text-(--sec-text) mb-6">Try adjusting your filters</p>
+                        <button onclick="document.getElementById('clearFiltersBtn').click()"
+                            class="bg-(--primary) text-white px-6 py-3 rounded-2xl hover:opacity-90 transition">
+                            Clear Filters
+                        </button>
+                    </div> -->
 
-                    <!-- Item 3 -->
-                    <div class="food-card-arch ">
-                        <div class="arch-img-container">
-                            <img src="../assets/images/item3.png" alt="Masala Dosa">
+                    <!-- Pagination -->
+                    <div class="mt-auto flex justify-center items-center gap-4 pt-8">
+                        <button id="prevBtn"
+                            class="px-4 py-2 rounded-xl bg-(--sec-bg) text-(--main-text) hover:bg-(--primary) hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed border border-(--border)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="page-index flex gap-2">
+                            <!-- Page numbers will be generated here -->
                         </div>
-                        <p class="text-(--primary) text-xs font-bold uppercase mb-1">South Indian</p>
-                        <h3 class="font-bold text-xl mb-1">Masala Dosa</h3>
-                        <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star text-gray-300"></i>
-                            <span class="text-(--text-gray) ml-1">(50)</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-auto">
-                            <p class="text-xl font-bold text-(--text-dark)">₹150</p>
-                            <a href="#product?id=1"
-                                class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center">
-                                Order Now
-                            </a>
-                        </div>
+                        <button id="nextBtn"
+                            class="px-4 py-2 rounded-xl bg-(--sec-bg) text-(--main-text) hover:bg-(--primary) hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed border border-(--border)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="page-index flex justify-center gap-4 mt-auto pb-12 items-end">
-                    <button
-                        class="w-12 h-12 rounded-xl bg-(--sec-bg) text-(--main-text) flex items-center justify-center hover:bg-(--primary) hover:text-white transition shadow-sm ">1</button>
-                    <button
-                        class="w-12 h-12 rounded-xl bg-(--primary) text-white flex items-center justify-center transition shadow-lg">2</button>
-                    <button
-                        class="w-12 h-12 rounded-xl bg-(--sec-bg) text-(--main-text) flex items-center justify-center hover:bg-(--primary) hover:text-white transition shadow-sm ">3</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Mobile Filter Overlay -->
+<div id="overlay" class=""></div>

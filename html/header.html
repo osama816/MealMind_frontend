@@ -2,14 +2,15 @@
   <div class="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
 
     <!-- Logo -->
-    <a href="#home" class="text-2xl font-bold font-(family-name:--fsecond) text-(--primary) flex items-center gap-1 border-b-2 border-(--primary) border-dashed">
+    <a href="#home"
+      class="text-2xl font-bold font-(family-name:--fsecond) text-(--primary) flex items-center gap-1 border-b-2 border-(--primary) border-dashed">
       <span>Meal</span><span class="text-(--main-text)">Mind.</span>
     </a>
 
     <!-- Navigation Links (Centered on Desktop) -->
     <ul class="hidden md:flex items-center gap-8 font-medium text-(--main-text) opacity-80">
       <li><a href="#home" class="hover:text-(--primary) transition">Home</a></li>
-      <li><a href="#products" class="hover:text-(--primary) transition text-(--primary) font-bold">Menu</a></li>
+      <li><a href="#products" class="hover:text-(--primary) transition">Menu</a></li>
       <li><a href="#about" class="hover:text-(--primary) transition">About Us</a></li>
     </ul>
 
@@ -59,13 +60,25 @@
 <div id="mobile-menu" class="fixed inset-0 bg-black/50 z-60 hidden">
   <div class="bg-(--sec-bg) w-3/4 h-full p-8 space-y-8 animate-side">
     <div class="flex items-center justify-between">
-      <span class="text-2xl font-bold text-(--primary)">FoodDash</span>
+      <a href="#home" class="text-2xl font-bold text-(--primary)">MealMind.</a>
       <button id="close-menu" class="text-2xl"><i class="fas fa-times"></i></button>
     </div>
+
+    <!-- Mobile Search -->
+    <div class="relative group">
+      <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 opacity-40 text-(--primary)"></i>
+      <input type="search" id="mobile-search-input"
+        class="bg-(--main-bg) text-(--main-text) rounded-full py-2 pl-4 pr-10 outline-none border border-transparent focus:border-(--primary) transition-all w-full placeholder-opacity-50 placeholder-(--main-text)"
+        placeholder="Search..." autocomplete="off" />
+      <div id="mobile-search-results"
+        class="bg-(--sec-bg) text-(--main-text) absolute w-full z-50 rounded-xl mt-2 border border-(--border) shadow-xl hidden">
+      </div>
+    </div>
+
     <ul class="space-y-6 text-xl font-medium">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#products" class="text-(--primary)">Menu</a></li>
-      <li><a href="#about">About Us</a></li>
+      <li><a href="#home" class="mobile-link">Home</a></li>
+      <li><a href="#products" class="mobile-link">Menu</a></li>
+      <li><a href="#about" class="mobile-link">About Us</a></li>
     </ul>
   </div>
 </div>
