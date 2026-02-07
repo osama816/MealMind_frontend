@@ -5,7 +5,7 @@
 
 <!-- Main chatbot window (hidden by default) -->
 <div id="chat-window"
-    class="fixed bottom-24 right-6 w-90 max-w-[90%] h-[70vh] rounded-2xl shadow-2xl flex-col bg-(--sec-bg) hidden font-(family-name:--fprime) z-50 overflow-hidden"
+    class="fixed bottom-24 right-6 w-90 max-w-[90%] h-[70vh] rounded-3xl shadow-2xl flex-col bg-(--sec-bg) border border-(--border) hidden font-(family-name:--fprime) z-50 overflow-hidden"
     style="max-height: 70vh;">
 
     <!-- Chat header / title bar -->
@@ -15,17 +15,21 @@
             <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
 
             <!-- Chatbot title -->
-            <span class="font-bold font-(family-name:--fsecond) uppercase tracking-wider text-sm">
-                Chef Bot 
+            <span class="font-black uppercase tracking-widest text-xs">
+                Chef Bot
             </span>
-
         </div>
 
-        <!-- Button to close the chatbot -->
-        <button id="closeChat" class="text-white text-2xl hover:rotate-90 transition-transform">
-            &times;
-        </button>
-
+        <div class="flex items-center gap-3">
+            <button id="clearChat"
+                class="text-white/60 hover:text-white transition-colors text-xs font-bold uppercase tracking-tighter">
+                Clear
+            </button>
+            <!-- Button to close the chatbot -->
+            <button id="closeChat" class="text-white text-2xl hover:rotate-90 transition-transform">
+                &times;
+            </button>
+        </div>
     </div>
 
     <!-- Messages container (scrollable) -->
@@ -34,33 +38,41 @@
         <!-- Initial bot welcome message -->
         <div class="flex justify-start animate-slide-up">
             <div
-                class="bg-(--main-bg) text-(--main-text) px-4 py-3 rounded-2xl max-w-[85%] text-sm leading-relaxed">
-                <p>Hello! 👋 I'm your AI shopping assistant.</p>
-                <p class="mt-1 opacity-80 text-xs text-(--main-text)">
-                    Try asking about
-                    <span class="text-(--primary) font-medium">menu</span>,
-                    <span class="text-(--primary) font-medium">offers</span>, or
-                    <span class="text-(--primary) font-medium">service</span>or
-                </p>
+                class="bg-(--main-text) text-(--main-bg) px-5 py-4 rounded-3xl max-w-[92%] text-sm leading-relaxed shadow-lg border border-(--border)">
+                <p class="font-black mb-2 uppercase tracking-tighter text-[10px]" style="color: var(--primary);">
+                    MealMind Assistant</p>
+                <p class="font-bold opacity-90">Hi there! 👋 I'm your AI Chef Bot. I can help you find meals, check
+                    prices, or track your orders.</p>
+                <div class="mt-4 p-3 bg-(--main-bg) rounded-2xl border border-(--border) space-y-2">
+                    <p class="text-[10px] font-black uppercase tracking-widest opacity-60">Try asking:</p>
+                    <ul class="text-xs space-y-1 font-bold" style="color: var(--main-text);">
+                        <li class="flex items-center gap-2"><i class="fas fa-search text-(--primary) text-[10px]"></i>
+                            "I want chicken biryani"</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-utensils text-(--primary) text-[10px]"></i>
+                            "Show me the breakfast menu"</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-truck text-(--primary) text-[10px]"></i>
+                            "Where is my order?"</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
     </div>
 
     <!-- Input area for user messages -->
-    <div class="p-4 bg-(--sec-bg) rounded-b-2xl shrink-0">
+    <div class="p-4 bg-(--sec-bg) rounded-b-3xl shrink-0 border-t border-(--border)">
 
         <!-- Input wrapper -->
         <div
-            class="flex items-center space-x-2 bg-(--main-bg) rounded-full px-5 py-3 transition-all shadow-inner">
+            class="flex items-center space-x-2 bg-(--main-bg) rounded-full px-5 py-2.5 transition-all shadow-inner border border-(--border) focus-within:border-(--primary)">
 
             <!-- Text input field -->
             <input id="userInput" type="text" placeholder="Type your question..."
-                class="flex-1 bg-transparent text-sm text-(--main-text) placeholder:opacity-50 focus:outline-none w-full font-medium" />
+                class="flex-1 bg-transparent text-sm text-(--main-text) placeholder:text-(--sec-text) placeholder:opacity-50 focus:outline-none w-full font-medium" />
 
             <!-- Send message button -->
             <button id="sendMsgBtn"
-                class="p-2 bg-(--primary) text-white rounded-full hover:opacity-80 transition disabled:opacity-30 disabled:cursor-not-allowed transform active:scale-90">
+                class="w-10 h-10 shrink-0 bg-(--primary) text-white rounded-full flex items-center justify-center hover:opacity-80 transition disabled:opacity-30 disabled:cursor-not-allowed transform active:scale-90">
 
                 <!-- Send icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -73,7 +85,7 @@
         <!-- Footer / branding -->
         <div class="text-center mt-3">
             <p class="text-[10px] text-(--main-text) opacity-50 uppercase tracking-widest font-bold">
-                Powered by AI Store • v2.0
+                Powered by AI MealMind • v2.0
             </p>
         </div>
 

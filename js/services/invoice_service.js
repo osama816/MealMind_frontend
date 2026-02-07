@@ -19,7 +19,7 @@ export function generateInvoice(order) {
 
     // Header
     doc.setFontSize(22);
-    text("STORE Shop.co", 20, 30, { bold: true });
+    text("MealMind", 20, 30, { bold: true });
 
     doc.setFontSize(10);
     text("Date: " + new Date(order.orderDate).toLocaleDateString(), 190, 30, { align: 'right' });
@@ -36,7 +36,7 @@ export function generateInvoice(order) {
     doc.setFillColor(245, 245, 245);
     doc.rect(20, 75, 170, 10, 'F');
     doc.setFontSize(10);
-    text("Item Description", 25, 81.5, { bold: true });
+    text("Item Name", 25, 81.5, { bold: true });
     text("Qty", 130, 81.5, { bold: true });
     text("Price", 150, 81.5, { bold: true });
     text("Amount", 185, 81.5, { bold: true, align: 'right' });
@@ -70,7 +70,7 @@ export function generateInvoice(order) {
     // Footer
     doc.setFontSize(10);
     doc.setTextColor(150, 150, 150);
-    text("Thank you for shopping with us!", 105, 280, { align: 'center' });
+    text("Thank you for shopping with MealMind!", 105, 280, { align: 'center' });
 
     // Save PDF
     doc.save(`Invoice_${order.id}.pdf`);
