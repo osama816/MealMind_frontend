@@ -1,12 +1,27 @@
-# 🛒 Shop.co - Modern E-Commerce Platform
+# 🍛 MealMind - Authentic Indian Food Delivery
 
-**🔗 Live Demo:** [shopco-shop.vercel.app](https://shopco-shop.vercel.app/)
+**🔗 Live Demo:** [mealsmind.vercel.app](https://mealsmind.vercel.app)
 
-A premium, fast, and responsive E-Commerce Single Page Application (SPA) built with a modern architecture using **Vanilla JavaScript (ES6+ Modules)**, **Tailwind CSS v4**, and smooth **CSS Transitions**.
+MealMind is a premium, fast, and responsive Single Page Application (SPA) designed for authentic Indian food delivery. Built with a modern architecture using **Vanilla JavaScript (ES6+ Modules)** and **Tailwind CSS v4**, it offers a seamless ordering experience from browsing traditional curries to generating PDF invoices.
 
 ![Banner](https://img.shields.io/badge/Status-Project_Completed-success?style=for-the-badge)
 ![Tech](https://img.shields.io/badge/Stack-HTML--CSS--JS-blue?style=for-the-badge)
-![Design](https://img.shields.io/badge/Design-Premium--Dark--Theme-black?style=for-the-badge)
+![Design](https://img.shields.io/badge/Design-Premium--Food--Theme-orange?style=for-the-badge)
+
+---
+
+## 🇪🇬 النسخة العربية (Arabic Version)
+
+### 🍛 MealMind - تجربة طعام هندي أصيل
+MealMind هو تطبيق ويب عصري وسريع (SPA) مخصص لتوصيل الطعام الهندي الأصيل. تم بناؤه باستخدام تقنيات الويب الحديثة ليوفر تجربة مستخدم سلسة، بدءاً من تصفح القائمة الغنية بالأطباق التقليدية (كالبرياني والكاري) وصولاً إلى إتمام الطلب وإصدار الفواتير بصيغة PDF.
+
+**المميزات الرئيسية:**
+- **قائمة طعام تفاعلية:** عرض ديناميكي للأطباق الهندية مع ميزات التصفية والبحث.
+- **تجربة SPA سريعة:** تنقل فوري بين الصفحات بدون إعادة تحميل المتصفح.
+- **نظام سمات متطور:** دعم كامل للوضع الليلي (Dark Mode) والوضع النهاري.
+- **إدارة السلة والطلبات:** إضافة وتعديل الطلبات في السلة في الوقت الفعلي.
+- **فواتير PDF:** إنشاء فواتير احترافية للطلبات تلقائياً.
+- **دردشة ذكية (Chatbot):** مساعد ذكي مدمج لمساعدة المستخدمين.
 
 ---
 
@@ -14,25 +29,24 @@ A premium, fast, and responsive E-Commerce Single Page Application (SPA) built w
 
 ### 🎞️ Smooth Page Transitions
 - **Dynamic Entry Animations**: Content slides in smoothly from the side and top when navigating between pages.
-- **Staggered Delays**: List items (products, reviews) appear sequentially with a cascading effect for a premium feel.
+- **Staggered Delays**: Menu items and reviews appear sequentially with a cascading effect for a premium feel.
 - **SPA-like Feel**: Fast navigation using a custom router that loads components without full page refreshes.
 
 ### 📱 Responsive & Premium Header
 - **Fixed Navigation**: Header stays at the top for easy access.
-- **Slide-down Transition**: The header animates smoothly on initial load.
 - **Advanced Mobile Menu**: A fully animated, responsive side-navigation for smaller screens.
 - **Interactive Search**: An animated search bar that expands and focuses for a better UX.
 
 ### 🌓 Advanced Theme Engine
 - **Dark/Light Mode**: Full support for both themes with instant toggling.
 - **System Memory**: Remembers user theme preferences using `localStorage`.
-- **CSS Variables**: Unified color palette and spacing system using modern CSS variables.
 
-### 🛍️ Core E-Commerce Functionality
-- **Dynamic Product Engine**: Fetching and rendering products from JSON APIs.
+### 🛍️ Core Food Delivery Functionality
+- **Dynamic Menu Engine**: Fetching and rendering traditional Indian dishes from JSON APIs.
 - **Shopping Cart**: Real-time cart management (Add/Remove/Update).
 - **Checkout & Invoices**: Integrated checkout flow with PDF invoice generation using `jsPDF`.
 - **User Authentication**: Secure registration and login flow with encrypted storage.
+- **AI Chatbot**: Integrated support bot for order tracking and assistance.
 
 ---
 
@@ -52,7 +66,7 @@ A premium, fast, and responsive E-Commerce Single Page Application (SPA) built w
 ## 📁 Project Architecture
 
 ```bash
-ecommerce-web/
+MealMind/
 ├── html/          # Reusable component templates
 ├── js/
 │   ├── Utilities/ # Helper functions (Theme, Validation, Helpers)
@@ -85,36 +99,9 @@ To generate a minified, production-ready CSS file:
 npm run build
 ```
 
-### 🌍 Deployment on Vercel
-The project is fully optimized for Vercel deployment:
-1. Push the code to a **GitHub** repository.
-2. Link the repository to **Vercel**.
-3. Use `npm run build` as the build command.
-4. Set the output directory to the root `/`.
-
 ---
 
 ## 📐 Architecture Principles
 1. **Separation of Concerns**: Logic (Services), UI (Pages), and Data (API) are kept independent.
-2. **Standardization**: Folder names and imports are case-sensitive and follow naming conventions (e.g., `Utilities`).
-3. **No Placeholders**: Real dynamic rendering for all components.
-4. **Consistency**: Global variables are used for all colors, spacing, and typography.
-
----
-
-## � Meet the Team
-
-Developed with ❤️ by our talented team:
-
-| Name | GitHub Profile |
-| :--- | :--- |
-| **Mohamed Elsefy** | [@Mohamed-Elsefy](https://github.com/Mohamed-Elsefy) |
-| **Osama** | [@osama816](https://github.com/osama816) |
-| **Karim Khalifa** | [@KarimKhalifa98](https://github.com/KarimKhalifa98) |
-| **Khaled** | [@the-khaled](https://github.com/the-khaled) |
-| **Mohamed Y. Fadl** | [@MohamedYFadl](https://github.com/MohamedYFadl) |
-| **Mostafa Sobhy** | [@mostafasobhy74-hub](https://github.com/mostafasobhy74-hub) |
-
-*Aiming for the highest quality and cleanest code possible.*
-
-
+2. **Standardization**: Folder names and imports are case-sensitive and follow naming conventions.
+3. **Consistency**: Global variables are used for all colors, spacing, and typography.
