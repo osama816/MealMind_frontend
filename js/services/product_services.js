@@ -137,18 +137,18 @@ export function renderProductCard(product, categoryName, animationClass = "", de
         <h3 class="font-bold text-xl mb-1 truncate w-full text-center text-(--primary)">${product.name}</h3>
         <div class="flex justify-center items-center gap-1 mb-3 text-yellow-400 text-sm">
             ${starsHtml}
-            <span class="text-(--sec-text) ml-1 text-xs">(${product.rating})</span>
+            <span class="text-(--primary) ml-1 text-xs">(${product.rating})</span>
         </div>
         
         <div class="flex items-center justify-between mt-auto w-full px-2">
             ${product.discountPercentage ? `
             <div class="flex flex-col items-start text-left">
-                <span class="font-bold text-lg text-(--main-text)">$${parseInt(discountedPrice)}</span>
+                <span class="font-bold text-lg text-(--primary)">$${parseInt(discountedPrice)}</span>
                 <div class="flex gap-1 text-xs">
                     <span class="text-gray-400 line-through">$${parseInt(product.price)}</span>
                     <span class="text-red-500 font-bold">-${product.discountPercentage}%</span>
                 </div>
-            </div>` : `<div class="font-bold text-lg text-(--main-text)">$${parseInt(product.price)}</div>`}
+            </div>` : `<div class="font-bold text-lg text-(--primary)">$${parseInt(product.price)}</div>`}
             
             <a href="index.html#product?id=${product.id}"
                 class="bg-(--primary) text-white font-bold py-2 px-4 rounded-full hover:bg-white hover:text-(--primary) transform hover:scale-105 transition shadow-lg text-center text-xs">

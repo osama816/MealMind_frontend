@@ -12,6 +12,7 @@ const mobileResultsContainer = document.getElementById("mobile-search-results");
 const mobileMenuBtn = document.getElementById("mobile-menu-btn");
 const closeMenuBtn = document.getElementById("close-menu");
 const mobileMenu = document.getElementById("mobile-menu");
+const mobileContent = document.getElementById("mobile-menu-content");
 const mobileLinks = document.querySelectorAll(".mobile-link");
 
 let allProducts = [];
@@ -43,7 +44,7 @@ function handleSearch(inputElement, resultsContainer) {
     if (filteredProducts.length === 0) {
         const noResults = document.createElement("div");
         noResults.textContent = "No products found";
-        noResults.classList.add("p-3", "text-gray-500", "text-center");
+        noResults.classList.add("p-3", "text-(--sec-text)", "text-center");
         resultsContainer.appendChild(noResults);
     } else {
         filteredProducts.forEach(product => {
@@ -89,26 +90,52 @@ document.addEventListener("click", (e) => {
 
 // Mobile Menu Toggle Logic
 function toggleMobileMenu() {
-    if (!mobileMenu) return;
-    mobileMenu.classList.toggle("hidden");
+    if (!mobileMenu || !mobileContent) return;
+
+    const isHidden = mobileMenu.classList.contains("hidden");
+
+    if (isHidden) {
+        // Show menu
+        mobileMenu.classList.remove("hidden");
+        // Minor delay to trigger transition
+        setTimeout(() => {
+            mobileMenu.classList.add("opacity-100");
+            mobileContent.classList.remove("-translate-x-full");
+            mobileContent.classList.add("translate-x-0");
+        }, 10);
+        document.body.style.overflow = "hidden"; // Prevent scroll
+    } else {
+        // Hide menu
+        mobileMenu.classList.remove("opacity-100");
+        mobileContent.classList.remove("translate-x-0");
+        mobileContent.classList.add("-translate-x-full");
+
+        // Wait for transition before hiding
+        setTimeout(() => {
+            mobileMenu.classList.add("hidden");
+        }, 300);
+        document.body.style.overflow = ""; // Restore scroll
+    }
 }
 
-// Function to update active link styling based on URL hash
+// Function to update active link styling
 function updateActiveLink() {
     const currentHash = window.location.hash || "#home";
-    // Select all nav links (desktop and mobile)
     const allNavLinks = document.querySelectorAll('nav ul li a, #mobile-menu ul li a');
 
     allNavLinks.forEach(link => {
         const href = link.getAttribute("href");
         if (href === currentHash) {
             link.classList.add("text-(--primary)", "font-bold");
-            // If it's a desktop link, ensure parent opacity is high (optional but good)
-            if (link.closest('ul')) {
-                link.closest('ul').classList.remove('opacity-80');
+            // Mobile specific styling
+            if (link.classList.contains('mobile-link')) {
+                link.classList.add("bg-(--main-bg)");
             }
         } else {
             link.classList.remove("text-(--primary)", "font-bold");
+            if (link.classList.contains('mobile-link')) {
+                link.classList.remove("bg-(--main-bg)");
+            }
         }
     });
 }
@@ -121,20 +148,25 @@ if (closeMenuBtn) {
     closeMenuBtn.addEventListener("click", toggleMobileMenu);
 }
 
-// Close menu when clicking on a link or overlay
+// Close menu when clicking on overlay
 if (mobileMenu) {
     mobileMenu.addEventListener("click", (e) => {
         if (e.target === mobileMenu) toggleMobileMenu();
     });
 }
 
+// Handle mobile links click
 mobileLinks.forEach(link => {
-    link.addEventListener("click", toggleMobileMenu);
+    link.addEventListener("click", () => {
+        // Close menu
+        toggleMobileMenu();
+    });
 });
 
 // Initialize active link and listen for hash changes
 updateActiveLink();
 window.addEventListener("hashchange", updateActiveLink);
+
 
 
 

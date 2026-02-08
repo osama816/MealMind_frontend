@@ -1,38 +1,43 @@
 import { logout } from '../services/auth_services.js';
 
 export function renderAuthButtons() {
-    const authContainer = document.getElementById('auth-buttons');
-    if (!authContainer) return;
+    const desktopContainer = document.getElementById('auth-buttons-desktop');
+    const mobileContainer = document.getElementById('auth-buttons-mobile');
 
-    // Get logged-in user from localStorage
+    // Support legacy container if it exists
+    const legacyContainer = document.getElementById('auth-buttons');
+    const containers = [desktopContainer, mobileContainer, legacyContainer].filter(c => c !== null);
+
+    if (containers.length === 0) return;
+
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    if (currentUser) {
-        // If user is logged in
-        authContainer.innerHTML = `
-            <div class="flex items-center gap-3">
-                <span class="text-sm font-medium opacity-70 hidden md:block text-(--main-text)">
-                    Hi, ${currentUser.fullName.split(' ')[0]}
-                </span>
-                <button id="logout-btn"
-                    class="bg-red-500/10 text-red-500 border border-red-500/20 px-5 py-2 rounded-full text-sm font-bold hover:bg-red-500 hover:text-white transition">
-                    Logout
-                </button>
-            </div>
-        `;
+    containers.forEach(container => {
+        if (currentUser) {
+            container.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium opacity-70 hidden md:block text-(--main-text)">
+                        Hi, ${currentUser.fullName.split(' ')[0]}
+                    </span>
+                    <button class="logout-btn w-full bg-(--primary) text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-white hover:text-(--primary) border border-transparent hover:border-(--primary) transition">
+                        Logout
+                    </button>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `
+                <a href="#login"
+                    class="block text-center bg-(--primary) text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-white hover:text-(--primary) border border-transparent hover:border-(--primary) transition">
+                    Login
+                </a>
+            `;
+        }
+    });
 
-        // Logout event
-        document.getElementById('logout-btn').addEventListener('click', () => {
+    // Add event listeners to all logout buttons
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
             logout();
         });
-
-    } else {
-        // If user is not logged in
-        authContainer.innerHTML = `
-            <a href="#login"
-                class="bg-(--primary) text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-white hover:text-(--primary) border border-transparent hover:border-(--primary) transition">
-                Login
-            </a>
-        `;
-    }
+    });
 }
